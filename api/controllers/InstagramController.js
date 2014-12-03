@@ -25,6 +25,7 @@ module.exports = {
 		console.log("subscribe", req.query);
 
 		if (req.query['hub.challenge']) {
+			console.log(req.query['hub.challenge']);
 			return req.query['hub.challenge'];
 		}
 	}
