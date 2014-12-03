@@ -9,11 +9,7 @@ module.exports = {
 
 	callback: function (req, res, next) {
 
-		console.log("callback", req.query);
-
-		if (req.query) {
-			return req.query['hub.challenge'];
-		}
+		console.log("callback", req);
 
 		// InstagramService.callback(req.query).
 		// 	then(function () {
@@ -22,6 +18,15 @@ module.exports = {
 		// 	fail(function () {
 		// 		console.log("error");
 		// 	});
+	},
+
+	subscribe: function (req, res, next) {
+
+		console.log("subscribe", req.query);
+
+		if (req.query['hub.challenge']) {
+			return req.query['hub.challenge'];
+		}
 	}
 
 };

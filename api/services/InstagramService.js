@@ -20,7 +20,7 @@ module.exports = {
       client_secret: config.client_secret
     });
 
-    ig.add_user_subscription(config.redirect_uri, function(err, result, remaining, limit) {
+    ig.add_user_subscription(config.subscribe_uri, function(err, result, remaining, limit) {
       console.log(err,result);
     });
 
