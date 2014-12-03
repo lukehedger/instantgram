@@ -9,12 +9,12 @@ module.exports = {
 
 	callback: function (req, res, next) {
 
-		console.log("callback");
-		res.send(200);
+		console.log("callback", req.query);
 
-		// TODO - what data do we get, need to pass this to InstagramService
-		// console.log(req.query);
-		//
+		if (req.query) {
+			return req.query['hub.challenge'];
+		}
+
 		// InstagramService.callback(req.query).
 		// 	then(function () {
 		// 		console.log("ok");
@@ -22,11 +22,6 @@ module.exports = {
 		// 	fail(function () {
 		// 		console.log("error");
 		// 	});
-	},
-
-	user: function (req, res, next) {
-		console.log("user");
-		res.send(200);
 	}
 
 };
