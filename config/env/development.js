@@ -25,7 +25,7 @@ module.exports = {
     client_id:      '',
     client_secret:  '',
     scope:          'offline_access, user_about_me, user_activities, user_likes, read_stream, read_insights, manage_pages',
-    redirect_uri:   'http://localhost:1337/facebook/callback',
+    redirect_uri:   'https://rocky-earth-3762.herokuapp.com/facebook/callback',
     return_scopes:   true
   },
 
@@ -40,7 +40,7 @@ module.exports = {
     client_id:      '0fdfffab4da743eeaafa79c71de5f2f7',
     client_secret:  'fab9e64e250148e1a138641f623dbdc9',
     scope:          [ 'likes' ],
-    redirect_uri:   'http://dev.lrsocial.com:1337/instagram/callback'
+    redirect_uri:   'https://rocky-earth-3762.herokuapp.com/instagram/callback'
   }
 
 };
