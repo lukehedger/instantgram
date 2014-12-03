@@ -25,9 +25,7 @@ module.exports = {
 		console.log("subscribe", req.query);
 
 		if (req.query['hub.challenge']) {
-			res.send(200, {
-				'hub.challenge': req.query['hub.challenge']
-			});
+			res.send(200, req.query['hub.challenge']);
 		}
 	}
 
