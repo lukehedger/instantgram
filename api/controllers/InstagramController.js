@@ -27,7 +27,6 @@ module.exports = {
 				res.badRequest(err);
 			});
 	},
-	},
 
 	unsubscribe: function (req, res, next) {
 
