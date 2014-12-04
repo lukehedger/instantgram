@@ -125,11 +125,41 @@ module.exports = {
     return defer.promise;
   },
 
-  callback: function (body) {
+  getUserMediaRecent: function (media_id) {
 
     var defer = Q.defer();
 
-    ig.media(body.data.media_id, function (err, media, remaining, limit) {
+    ig.media(media_id, function (err, media, remaining, limit) {
+      if (err) {
+        defer.reject(err)
+      } else {
+        defer.resolve(media);
+      }
+    });
+
+    return defer.promise;
+  },
+
+  getTagMediaRecent: function (object_id) {
+
+    var defer = Q.defer();
+
+    ig.tag_media_recent(object_id, function (err, media, remaining, limit) {
+      if (err) {
+        defer.reject(err)
+      } else {
+        defer.resolve(media);
+      }
+    });
+
+    return defer.promise;
+  },
+
+  getGeographyMediaRecent: function (object_id) {
+
+    var defer = Q.defer();
+
+    ig.geography_media_recent(object_id, function (err, media, remaining, limit) {
       if (err) {
         defer.reject(err)
       } else {

@@ -35,7 +35,7 @@ module.exports = {
 				fail(function (err) {
 					error(err);
 				});
-		} else if (object == "geo") {
+		} else if (object == "geography") {
 			var split = aspect.split(","),
 					lat = split[0],
 					lng = split[1];
@@ -95,28 +95,57 @@ module.exports = {
 			res.send(200, req.query['hub.challenge']);
 		} else {
 
-			console.log(req.body);
-			InstagramService.callback(req.body[0]).
-				then(function(media) {
-					// console.log("media", media);
-					var text = media.caption ? media.caption.text : "",
-							img = media.images.standard_resolution.url;
+			var body = req.body[0],
+					object = body.object;
 
-					InstagramService.share(text, img).
-						then(function(results){
-							console.log(results);
-						}).
-						fail(function(err){
-							console.log(err);
-						});
-				}).
-				fail(function(err){
-					sails.log.error(err);
-					res.badRequest(err);
-				});
+			if (object == "user") {
+				InstagramService.getUserMediaRecent(body.data.media_id).
+					then(function(media) {
+						share(media);
+					}).
+					fail(function(err){
+						error(err);
+					});
+			} else if (object == "tag") {
+				InstagramService.getTagMediaRecent(body.object_id).
+					then(function(media) {
+						share(media);
+					}).
+					fail(function(err){
+						error(err);
+					});
+			} else if (object == "geography") {
+				InstagramService.getGeographyMediaRecent(body.object_id).
+					then(function(media) {
+						share(media);
+					}).
+					fail(function(err){
+						error(err);
+					});
+			}
 
 			// acknowledge POST within 2s timeout
 			res.ok();
+
+			function share(media) {
+
+				console.log("media", media);
+				var text = media.caption ? media.caption.text : "",
+						img = media.images.standard_resolution.url;
+
+				InstagramService.share(text, img).
+					then(function(results){
+						console.log(results);
+					}).
+					fail(function(err){
+						console.log(err);
+					});
+			}
+
+			function error(err) {
+				sails.log.error(err);
+				res.badRequest(err);
+			}
 		}
 	}
 };
