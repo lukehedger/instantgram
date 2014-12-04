@@ -51,7 +51,9 @@ module.exports = {
 					// TODO - handle data, save access_token to db
 					sails.log(data);
 					// TODO - get current subscriptions and render on view with subscriptionId (InstagramService.readSubscriptions())
-					res.view("authorised");
+					res.view("authorised", {
+							instagramId: data.user.id
+					});
 				}).
 				fail(function (err) {
 					sails.log.error(err);
