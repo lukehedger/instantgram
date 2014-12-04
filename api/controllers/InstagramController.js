@@ -36,7 +36,10 @@ module.exports = {
 					error(err);
 				});
 		} else if (object == "geo") {
-			InstagramService.createGeographySubscription(aspect, 100).
+			var split = aspect.split(","),
+					lat = split[0],
+					lng = split[1];
+			InstagramService.createGeographySubscription(lat, lng, 100).
 				then(function (result) {
 					success(result);
 				}).

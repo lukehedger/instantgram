@@ -78,11 +78,11 @@ module.exports = {
     return defer.promise;
   },
 
-  createGeographySubscription: function (latlng, radius) {
+  createGeographySubscription: function (lat, lng, radius) {
 
     var defer = Q.defer();
 
-    ig.add_geography_subscription(latlng, radius, config.redirect_uri, function(err, result, remaining, limit) {
+    ig.add_geography_subscription(lat, lng, radius, config.redirect_uri, function(err, result, remaining, limit) {
       if (err) {
         // err.retry(); // retry ?
         defer.reject(err)
