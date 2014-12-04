@@ -148,6 +148,7 @@ module.exports = {
       if (err) {
         defer.reject(err)
       } else {
+        console.log(media);
         defer.resolve(media);
       }
     });
