@@ -95,6 +95,7 @@ module.exports = {
 			res.send(200, req.query['hub.challenge']);
 		} else {
 
+			console.log(req.body);
 			InstagramService.callback(req.body[0]).
 				then(function(media) {
 					// console.log("media", media);
