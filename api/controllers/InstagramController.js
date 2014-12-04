@@ -133,14 +133,14 @@ module.exports = {
 				// var text = media.caption ? media.caption.text : "",
 				// 		img = media.images.standard_resolution.url;
 
-			// 	InstagramService.share(text, img).
-			// 		then(function(results){
-			// 			console.log(results);
-			// 		}).
-			// 		fail(function(err){
-			// 			console.log(err);
-			// 		});
-			// }
+				// InstagramService.share(text, img).
+				// 	then(function(results){
+				// 		console.log(results);
+				// 	}).
+				// 	fail(function(err){
+				// 		console.log(err);
+				// 	});
+			}
 
 			function error(err) {
 				sails.log.error(err);
