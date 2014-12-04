@@ -1,8 +1,7 @@
 /**
  * InstagramController
  *
- * @description :: Server-side logic for managing Instagrams
- * @help        :: See http://links.sailsjs.org/docs/controllers
+ * @description :: Server-side Instagrams
  */
 
 module.exports = {
@@ -63,16 +62,23 @@ module.exports = {
 
 			InstagramService.callback(req.body[0]).
 				then(function(media) {
-					// TODO - InstagramService.share(text, img)
 					console.log("media", media);
+					var text = if media.caption ? media.caption : "",
+							img = media.images.standard_resolution;
+
+					InstagramService.share(text, img).
+						then(function(results){
+							console.log(results);
+						}).
+						fail(function(err){
+							console.log(err);
+						});
 				}).
 				fail(function(err){
 					sails.log.error(err);
 					res.badRequest(err);
 				});
 
-			// TODO - does this fire straight away, without waiting for service promise
-			console.log("here");
 			// acknowledge POST within 2s timeout
 			res.ok();
 		}

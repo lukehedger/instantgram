@@ -94,7 +94,6 @@ module.exports = {
   },
 
   callback: function (body) {
-    console.log(body);
 
     var defer = Q.defer();
 
@@ -113,9 +112,44 @@ module.exports = {
 
     var defer = Q.defer();
 
-    // TODO - run as async tasks:
-    // 1. post to Twitter (need a Twitter Service)
-    // 2. post to Facebook (need a Facebook Service)
+    var tasks = [
+      function twitter(cb) {
+        // TwitterService.post(text, img).
+        //   then(function(){
+        //
+        //   }).
+        //   fail(function(){
+        //
+        //   });
+        cb(null, "twitter");
+      },
+      function facebook(cb) {
+        FacebookService.post(text, img).
+          // then(function(){
+          //
+          // }).
+          // fail(function(){
+          //
+          // });
+        cb(null, "facebook");
+      }
+    ];
+
+    async.parallel(tasks, function (err, results) {
+      if (err) {
+        sails.log.error("Share async tasks failed:", err);
+
+        defer.reject({
+          error: err
+        });
+      } else {
+        sails.log.info("Share async tasks completed:", results);
+
+        defer.resolve({
+          results: results
+        });
+      }
+    });
 
     return defer.promise;
   }
