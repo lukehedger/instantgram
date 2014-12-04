@@ -18,7 +18,7 @@ module.exports = {
 
 		console.log(req.param("object"), req.param("aspect"));
 
-		InstagramService.createSubscription().
+		InstagramService.createUserSubscription().
 			then(function (result) {
 				console.log(result);
 				res.ok();

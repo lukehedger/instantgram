@@ -36,7 +36,7 @@ module.exports.routes = {
     view: 'homepage'
   },
 
-  'instagram/subscribe/:object/:aspect': {
+  '/instagram/subscribe/:object/:aspect': {
     controller: 'instagram',
     action: 'subscribe'
   }
