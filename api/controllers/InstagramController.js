@@ -16,17 +16,45 @@ module.exports = {
 
 	subscribe: function (req, res, next) {
 
-		console.log(req.param("object"), req.param("aspect"));
+		var object = req.param("object"),
+				aspect = req.param("aspect");
 
-		InstagramService.createUserSubscription().
-			then(function (result) {
-				console.log(result);
-				res.ok();
-			}).
-			fail(function (err) {
-				sails.log.error(err);
-				res.badRequest(err);
-			});
+		if (object == "user") {
+			InstagramService.createUserSubscription().
+				then(function (result) {
+					success(result);
+				}).
+				fail(function (err) {
+					error(err);
+				});
+		} else if (object == "tag") {
+			InstagramService.createTagSubscription(aspect).
+				then(function (result) {
+					success(result);
+				}).
+				fail(function (err) {
+					error(err);
+				});
+		} else if (object == "geo") {
+			InstagramService.createGeographySubscription(aspect, 100).
+				then(function (result) {
+					success(result);
+				}).
+				fail(function (err) {
+					error(err);
+				});
+		}
+
+		function success(result) {
+			// TODO - handle subscription success on client/view
+			console.log(result);
+			res.ok();
+		}
+
+		function error(err) {
+			sails.log.error(err);
+			res.badRequest(err);
+		}
 	},
 
 	unsubscribe: function (req, res, next) {
