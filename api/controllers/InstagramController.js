@@ -129,7 +129,7 @@ module.exports = {
 
 			function share(media) {
 
-				console.log(object, "media", media);
+				console.log(object, "media", media.images, media.images.standard_resolution);
 				// var text = media.caption ? media.caption.text : "",
 				// 		img = media.images.standard_resolution.url;
 
