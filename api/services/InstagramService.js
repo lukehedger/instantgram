@@ -124,13 +124,13 @@ module.exports = {
         cb(null, "twitter");
       },
       function facebook(cb) {
-        FacebookService.post(text, img).
-          // then(function(){
-          //
-          // }).
-          // fail(function(){
-          //
-          // });
+        // FacebookService.post(text, img).
+        //   then(function(){
+        //
+        //   }).
+        //   fail(function(){
+        //
+        //   });
         cb(null, "facebook");
       }
     ];
