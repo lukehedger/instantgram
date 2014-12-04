@@ -63,8 +63,8 @@ module.exports = {
 			InstagramService.callback(req.body[0]).
 				then(function(media) {
 					// console.log("media", media);
-					var text = media.caption ? media.caption : "",
-							img = media.images.standard_resolution;
+					var text = media.caption ? media.caption.text : "",
+							img = media.images.standard_resolution.url;
 
 					InstagramService.share(text, img).
 						then(function(results){
