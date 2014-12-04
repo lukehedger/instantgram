@@ -148,7 +148,6 @@ module.exports = {
       if (err) {
         defer.reject(err)
       } else {
-        console.log(media);
         defer.resolve(media);
       }
     });
@@ -162,9 +161,9 @@ module.exports = {
 
     ig.geography_media_recent(object_id, {count: 1}, function (err, media, remaining, limit) {
       if (err) {
+        console.log(err);
         defer.reject(err)
       } else {
-        console.log(media);
         defer.resolve(media);
       }
     });
