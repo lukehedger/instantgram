@@ -47,7 +47,7 @@ module.exports = {
 			res.send(200, req.query['hub.challenge']);
 		} else {
 
-			console.log("callback", req);
+			console.log("callback", req.body);
 			res.ok();
 		}
 	}
