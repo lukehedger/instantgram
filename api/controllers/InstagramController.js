@@ -7,26 +7,48 @@
 
 module.exports = {
 
-	callback: function (req, res, next) {
+	auth: function (req, res, next) {
 
-		console.log("callback", req);
-
-		// InstagramService.callback(req.query).
-		// 	then(function () {
-		// 		console.log("ok");
-		// 	}).
-		// 	fail(function () {
-		// 		console.log("error");
-		// 	});
+		InstagramService.getAuthUrl().
+			then(function (authUrl) {
+				res.redirect(authUrl);
+			});
 	},
 
 	subscribe: function (req, res, next) {
 
-		console.log("subscribe", req.query);
+		// TODO - deleteSubscriptions -> then/fail
+		InstagramService.createSubscription().
+			then(function (result) {
+				console.log(result);
+				res.ok();
+			}).
+			fail(function (err) {
+				sails.log.error(err);
+			});
+	},
 
-		if (req.query['hub.challenge']) {
+	callback: function (req, res, next) {
+
+		if (req.param("code")) {
+
+			InstagramService.authorise(req.param("code")).
+				then(function (data) {
+					// TODO - handle data, save access_token to db
+					sails.log(data);
+					res.view("authorised");
+				}).
+				fail(function (err) {
+					sails.log.error(err);
+				});
+		} else if (req.param("hub.challenge")) {
+
+			console.log("subscription GET callback", req.query);
 			res.send(200, req.query['hub.challenge']);
+		} else {
+
+			console.log("callback", req);
+			res.ok();
 		}
 	}
-
 };

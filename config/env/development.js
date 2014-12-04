@@ -40,8 +40,7 @@ module.exports = {
     client_id:      '0fdfffab4da743eeaafa79c71de5f2f7',
     client_secret:  'fab9e64e250148e1a138641f623dbdc9',
     scope:          [ 'likes' ],
-    redirect_uri:   'https://rocky-earth-3762.herokuapp.com/instagram/callback',
-    subscribe_uri:   'https://rocky-earth-3762.herokuapp.com/instagram/subscribe'
+    redirect_uri:   'https://rocky-earth-3762.herokuapp.com/instagram/callback'
   }
 
 };
