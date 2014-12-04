@@ -94,6 +94,7 @@ module.exports = {
   },
 
   callback: function (body) {
+    console.log(body);
 
     var defer = Q.defer();
 
