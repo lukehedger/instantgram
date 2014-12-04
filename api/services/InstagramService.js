@@ -46,11 +46,43 @@ module.exports = {
     return defer.promise;
   },
 
-  createSubscription: function () {
+  createUserSubscription: function () {
 
     var defer = Q.defer();
 
     ig.add_user_subscription(config.redirect_uri, function(err, result, remaining, limit) {
+      if (err) {
+        // err.retry(); // retry ?
+        defer.reject(err)
+      } else {
+        defer.resolve(result);
+      }
+    });
+
+    return defer.promise;
+  },
+
+  createTagSubscription: function (tag) {
+
+    var defer = Q.defer();
+
+    ig.add_tag_subscription(tag, config.redirect_uri, function(err, result, remaining, limit) {
+      if (err) {
+        // err.retry(); // retry ?
+        defer.reject(err)
+      } else {
+        defer.resolve(result);
+      }
+    });
+
+    return defer.promise;
+  },
+
+  createGeographySubscription: function (latlng, radius) {
+
+    var defer = Q.defer();
+
+    ig.add_geography_subscription(latlng, radius, config.redirect_uri, function(err, result, remaining, limit) {
       if (err) {
         // err.retry(); // retry ?
         defer.reject(err)
