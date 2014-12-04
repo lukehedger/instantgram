@@ -17,7 +17,6 @@ module.exports = {
 
 	subscribe: function (req, res, next) {
 
-		// TODO - deleteSubscriptions -> then/fail
 		InstagramService.createSubscription().
 			then(function (result) {
 				console.log(result);
@@ -25,6 +24,21 @@ module.exports = {
 			}).
 			fail(function (err) {
 				sails.log.error(err);
+				res.badRequest(err);
+			});
+	},
+	},
+
+	unsubscribe: function (req, res, next) {
+
+		InstagramService.deleteSubscription(req.param("subscriptionId")).
+			then(function (result) {
+				console.log(result);
+				res.ok();
+			}).
+			fail(function (err) {
+				sails.log.error(err);
+				res.badRequest(err);
 			});
 	},
 
@@ -36,18 +50,31 @@ module.exports = {
 				then(function (data) {
 					// TODO - handle data, save access_token to db
 					sails.log(data);
+					// TODO - get current subscriptions and render on view with subscriptionId (InstagramService.readSubscriptions())
 					res.view("authorised");
 				}).
 				fail(function (err) {
 					sails.log.error(err);
+					res.badRequest(err);
 				});
 		} else if (req.param("hub.challenge")) {
 
-			console.log("subscription GET callback", req.query);
 			res.send(200, req.query['hub.challenge']);
 		} else {
 
-			console.log("callback", req.body);
+			InstagramService.callback(req.body).
+				then(function(media) {
+					// TODO - InstagramService.share(text, img)
+					console.log("media", media);
+				}).
+				fail(function(err){
+					sails.log.error(err);
+					res.badRequest(err);
+				});
+
+			// TODO - does this fire straight away, without waiting for service promise
+			console.log("here");
+			// acknowledge POST within 2s timeout
 			res.ok();
 		}
 	}
