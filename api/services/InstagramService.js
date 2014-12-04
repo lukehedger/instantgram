@@ -61,7 +61,6 @@ module.exports = {
 
     return defer.promise;
   },
-  },
 
   readSubscriptions: function () {
 
