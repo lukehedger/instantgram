@@ -62,7 +62,7 @@ module.exports = {
 
 			InstagramService.callback(req.body[0]).
 				then(function(media) {
-					console.log("media", media);
+					// console.log("media", media);
 					var text = media.caption ? media.caption : "",
 							img = media.images.standard_resolution;
 

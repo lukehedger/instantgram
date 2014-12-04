@@ -109,6 +109,7 @@ module.exports = {
   },
 
   share: function (text, img) {
+    console.log(text, img);
 
     var defer = Q.defer();
 
