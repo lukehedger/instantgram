@@ -138,10 +138,11 @@ module.exports = {
 
 				InstagramService.share(text, img).
 					then(function(results){
-						console.log(results);
+						// console.log(results);
+						res.ok();
 					}).
 					fail(function(err){
-						console.log(err);
+						// sails.log.error(err);
 					});
 			}
 

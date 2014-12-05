@@ -156,16 +156,16 @@ module.exports = {
   },
 
   getGeographyMediaRecent: function (object_id, min_id) {
-
+    console.log("min_id", min_id);
     var defer = Q.defer();
 
     // removed this from options: min_id: min_id -> no results returned if used
-    ig.geography_media_recent(object_id, {count: 1}, function (err, media, remaining, limit) {
-      console.log(media[0].id, remaining.next_min_id);
+    ig.geography_media_recent(object_id, {count: 1, min_id: min_id}, function (err, media, remaining, limit) {
       if (err) {
         console.log(err);
         defer.reject(err)
       } else {
+        console.log("media", media);
         defer.resolve(media);
       }
     });
@@ -202,14 +202,14 @@ module.exports = {
 
     async.parallel(tasks, function (err, results) {
       if (err) {
-        sails.log.error("Share async tasks failed:", err);
 
+        sails.log.error("Share async tasks failed:", err);
         defer.reject({
           error: err
         });
       } else {
-        sails.log.info("Share async tasks completed:", results);
 
+        // sails.log.info("Share async tasks completed:", results);
         defer.resolve({
           results: results
         });
