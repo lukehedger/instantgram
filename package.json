@@ -1,8 +1,8 @@
 {
-  "name": "LandRover-SocialPoster",
+  "name": "instantgram",
   "private": true,
   "version": "0.0.0-3",
-  "description": "a Sails application",
+  "description": "Instagram realtime API",
   "keywords": [],
   "dependencies": {
     "async": "^0.9.0",
@@ -33,7 +33,7 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/luke.hedger/LandRover-SocialPoster.git"
+    "url": "git://github.com/luke.hedger/instantgram.git"
   },
   "author": "luke.hedger",
   "license": "",

@@ -1,3 +1,3 @@
-# sails-heroku
+# instantgram
 
 a [Sails](http://sailsjs.org) application
