@@ -156,10 +156,11 @@ module.exports = {
   },
 
   getGeographyMediaRecent: function (object_id, min_id) {
-    console.log("min_id", min_id);
+
     var defer = Q.defer();
 
     // removed this from options: min_id: min_id -> no results returned if used
+    // in fact, this does not seem reliable - probably better to poll get_media_search w/lat,lng,dist -> http://instagram.com/developer/endpoints/media/#get_media_search
     ig.geography_media_recent(object_id, {count: 1}, function (err, media, remaining, limit) {
       if (err) {
         defer.reject(err)
