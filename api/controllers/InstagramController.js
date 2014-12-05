@@ -98,6 +98,8 @@ module.exports = {
 			var body = req.body[0],
 					object = body.object;
 
+			console.log(body);
+
 			if (object == "user") {
 				InstagramService.getUserMediaRecent(body.data.media_id).
 					then(function(media) {
@@ -132,7 +134,6 @@ module.exports = {
 				console.log(object, "media", media);
 				var text = media.caption ? media.caption.text : "",
 						img = media.images.standard_resolution.url || media.images.low_resolution.url;
-						// TODO - what is up with geo?
 
 				InstagramService.share(text, img).
 					then(function(results){
