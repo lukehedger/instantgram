@@ -161,8 +161,7 @@ module.exports = {
 
     // removed this from options: min_id: min_id -> no results returned if used
     ig.geography_media_recent(object_id, {count: 1}, function (err, media, remaining, limit) {
-      // TODO - what do these do?
-      console.log(remaining, limit);
+      console.log(media[0].id, remaining.next_min_id);
       if (err) {
         console.log(err);
         defer.reject(err)
