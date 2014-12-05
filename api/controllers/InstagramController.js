@@ -109,7 +109,7 @@ module.exports = {
 			} else if (object == "tag") {
 				InstagramService.getTagMediaRecent(body.object_id).
 					then(function(media) {
-						share(media);
+						share(media[0]);
 					}).
 					fail(function(err){
 						error(err);
@@ -117,7 +117,7 @@ module.exports = {
 			} else if (object == "geography") {
 				InstagramService.getGeographyMediaRecent(body.object_id).
 					then(function(media) {
-						share(media);
+						share(media[0]);
 					}).
 					fail(function(err){
 						error(err);
@@ -132,6 +132,7 @@ module.exports = {
 				console.log(object, "media", media);
 				var text = media.caption ? media.caption.text : "",
 						img = media.images.standard_resolution.url || media.images.low_resolution.url;
+						// TODO - what is up with geo?
 
 				InstagramService.share(text, img).
 					then(function(results){
