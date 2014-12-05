@@ -98,8 +98,6 @@ module.exports = {
 			var body = req.body[0],
 					object = body.object;
 
-			console.log(body);
-
 			if (object == "user") {
 				InstagramService.getUserMediaRecent(body.data.media_id).
 					then(function(media) {
@@ -119,7 +117,7 @@ module.exports = {
 			} else if (object == "geography") {
 				InstagramService.getGeographyMediaRecent(body.object_id).
 					then(function(media) {
-						share(media[0]);
+						share(media);
 					}).
 					fail(function(err){
 						error(err);
