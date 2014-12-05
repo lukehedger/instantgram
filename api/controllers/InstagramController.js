@@ -4,7 +4,7 @@
  * @description :: Server-side Instagrams
  */
 
-var min_id = 0;
+var minId = 0;
 
 module.exports = {
 
@@ -41,7 +41,7 @@ module.exports = {
 			var split = aspect.split(","),
 					lat = split[0],
 					lng = split[1];
-			InstagramService.createGeographySubscription(lat, lng, 5000).
+			InstagramService.createGeographySubscription(lat, lng, 100).
 				then(function (result) {
 					success(result);
 				}).
@@ -119,11 +119,12 @@ module.exports = {
 						error(err);
 					});
 			} else if (object == "geography") {
-				console.log("GEO MIN_ID", min_id);
-				InstagramService.getGeographyMediaRecent(body.object_id, min_id).
+				console.log("GEO minId", minId);
+				InstagramService.getGeographyMediaRecent(body.object_id, minId).
 					then(function(media) {
-						// TODO - need to store media.id as min_id
-						min_id = media.id;
+						// TODO - need to store media.id as minId
+						console.log("GEO minId", media.id);
+						minId = media.id;
 						share(media[0]);
 					}).
 					fail(function(err){
@@ -136,7 +137,7 @@ module.exports = {
 
 			function share(media) {
 
-				console.log(object, "media", media);
+				// console.log(object, "media", media);
 				var text = media.caption ? media.caption.text : "",
 						img = media.images.standard_resolution.url || media.images.low_resolution.url;
 
