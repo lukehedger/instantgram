@@ -39,7 +39,7 @@ module.exports = {
 			var split = aspect.split(","),
 					lat = split[0],
 					lng = split[1];
-			InstagramService.createGeographySubscription(lat, lng, 100).
+			InstagramService.createGeographySubscription(lat, lng, 5000).
 				then(function (result) {
 					success(result);
 				}).
@@ -97,6 +97,8 @@ module.exports = {
 
 			var body = req.body[0],
 					object = body.object;
+
+			console.log(body);
 
 			if (object == "user") {
 				InstagramService.getUserMediaRecent(body.data.media_id).
