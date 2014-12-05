@@ -208,7 +208,7 @@ module.exports = {
         });
       } else {
 
-        // sails.log.info("Share async tasks completed:", results);
+        sails.log.info("Share async tasks completed:", results);
         defer.resolve({
           results: results
         });
