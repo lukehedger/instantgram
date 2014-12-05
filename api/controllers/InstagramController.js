@@ -117,9 +117,9 @@ module.exports = {
 						error(err);
 					});
 			} else if (object == "geography") {
+				console.log("GEO ID", body.object_id);
 				InstagramService.getGeographyMediaRecent(body.object_id).
 					then(function(media) {
-						console.log("GEO:", media);
 						share(media[0]);
 					}).
 					fail(function(err){
@@ -132,7 +132,7 @@ module.exports = {
 
 			function share(media) {
 
-				console.log(object, "media", media);
+				// console.log(object, "media", media);
 				var text = media.caption ? media.caption.text : "",
 						img = media.images.standard_resolution.url || media.images.low_resolution.url;
 
