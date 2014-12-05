@@ -39,7 +39,7 @@ module.exports = {
 			var split = aspect.split(","),
 					lat = split[0],
 					lng = split[1];
-			InstagramService.createGeographySubscription(lat, lng, 5000).
+			InstagramService.createGeographySubscription(lat, lng, 100).
 				then(function (result) {
 					success(result);
 				}).
