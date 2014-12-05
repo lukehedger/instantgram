@@ -117,7 +117,7 @@ module.exports = {
 			} else if (object == "geography") {
 				InstagramService.getGeographyMediaRecent(body.object_id).
 					then(function(media) {
-						share(media);
+						share(media[0]);
 					}).
 					fail(function(err){
 						error(err);

@@ -159,7 +159,7 @@ module.exports = {
 
     var defer = Q.defer();
 
-    ig.geography_media_recent(object_id, {count: 1}, function (err, media, remaining, limit) {
+    ig.geography_media_recent(object_id, function (err, media, remaining, limit) {
       if (err) {
         console.log(err);
         defer.reject(err)
