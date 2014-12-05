@@ -117,11 +117,8 @@ module.exports = {
 						error(err);
 					});
 			} else if (object == "geography") {
-				console.log("GEO minId", minId);
 				InstagramService.getGeographyMediaRecent(body.object_id, minId).
 					then(function(media) {
-						// TODO - need to store media.id as minId
-						console.log("GEO mediaId", media[0].id);
 						minId = media[0].id;
 						share(media[0]);
 					}).
