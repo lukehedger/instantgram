@@ -100,8 +100,6 @@ module.exports = {
 			var body = req.body[0],
 					object = body.object;
 
-			console.log(body);
-
 			if (object == "user") {
 				InstagramService.getUserMediaRecent(body.data.media_id).
 					then(function(media) {
@@ -119,6 +117,7 @@ module.exports = {
 						error(err);
 					});
 			} else if (object == "geography") {
+				var minId = 0;
 				console.log("GEO minId", minId);
 				InstagramService.getGeographyMediaRecent(body.object_id, minId).
 					then(function(media) {
