@@ -155,11 +155,11 @@ module.exports = {
     return defer.promise;
   },
 
-  getGeographyMediaRecent: function (object_id) {
+  getGeographyMediaRecent: function (object_id, min_id) {
 
     var defer = Q.defer();
 
-    ig.geography_media_recent(object_id, {count: 10}, function (err, media, remaining, limit) {
+    ig.geography_media_recent(object_id, {count: 1, min_id: min_id}, function (err, media, remaining, limit) {
       if (err) {
         console.log(err);
         defer.reject(err)

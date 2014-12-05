@@ -4,6 +4,8 @@
  * @description :: Server-side Instagrams
  */
 
+var min_id = 0;
+
 module.exports = {
 
 	auth: function (req, res, next) {
@@ -117,9 +119,11 @@ module.exports = {
 						error(err);
 					});
 			} else if (object == "geography") {
-				console.log("GEO ID", body.object_id);
-				InstagramService.getGeographyMediaRecent(body.object_id).
+				console.log("GEO MIN_ID", min_id);
+				InstagramService.getGeographyMediaRecent(body.object_id, min_id).
 					then(function(media) {
+						// TODO - need to store media.id as min_id
+						min_id = media.id;
 						share(media[0]);
 					}).
 					fail(function(err){
@@ -132,7 +136,7 @@ module.exports = {
 
 			function share(media) {
 
-				// console.log(object, "media", media);
+				console.log(object, "media", media);
 				var text = media.caption ? media.caption.text : "",
 						img = media.images.standard_resolution.url || media.images.low_resolution.url;
 
